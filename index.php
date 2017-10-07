@@ -61,7 +61,7 @@ foreach ($events as $event) {
         # code...
       }
 
-      $health2 = (408 - $health) * 100 / 408);
+      $health2 = ((408 - $health) * 100 / 408);
       $anotherHealth = (($rgywb[0] + $rgywb[2]) / 2 )- $rgywb[1] ;
       $health2 -= $anotherHealth;
       $health2 = floor($health2);
@@ -73,7 +73,7 @@ foreach ($events as $event) {
           (new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder())
             ->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(/*'saved at ' ."http://" . $_SERVER["HTTP_HOST"] . "/" . $directory_path . '/' . $filename . ".jpg" . */
               "この食べ物の健康度は・・・"."\n".$health2 ." / 100 !\n".$result[$resind]))
-            ->add(new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(1, 4))
+            //->add(new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(1, 4))
             );
 
       
