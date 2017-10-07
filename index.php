@@ -49,6 +49,8 @@ foreach ($events as $event) {
           (new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder())
             ->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('saved at ' ."http://" . $_SERVER["HTTP_HOST"] . "/" . $directory_path . '/' . $filename . ".jpg"))
             ->add(new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(1, 4))
+            );
+
       
     }
     continue;
