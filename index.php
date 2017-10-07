@@ -73,7 +73,7 @@ if($health2 < 85)$resind = 1;
       $bot->replyMessage($event->getReplyToken(),
           (new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder())
             ->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(
-              "この食べ物の健康度は・・・"."\n".$health2 ." / 100 !\n".$result[$resind]."\n今日のコード生産性は…".($health2 * 100)."行！".$result2[$resind]))
+              "この食べ物の健康度は・・・"."\n".$health2 ." / 100 !\n".$result[$resind]."\n\n今日のコード生産性は…".($health2 * 90)."行！\n\n".$result2[$resind]))
             //->add(new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(1, 4))
             );
 
