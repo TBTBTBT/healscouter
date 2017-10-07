@@ -3,7 +3,7 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 require('image.php');
-$result = ["不健康です！","健康です！"]
+$result = ["不健康です！","健康です！"];
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv('CHANNEL_ACCESS_TOKEN'));
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => getenv('CHANNEL_SECRET')]);
 $signature = $_SERVER["HTTP_" . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
@@ -24,11 +24,11 @@ foreach ($events as $event) {
             ->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('こんにちは！' . $displayName . 'さん'))
         );
       } else {
-        $bot->replyMessage($event->getReplyToken(),
+        /*$bot->replyMessage($event->getReplyToken(),
           (new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder())
             ->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('「こんにちは」と呼びかけて下さいね！'))
             ->add(new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(1, 4))
-        );
+        );*/
       }
     }else if($event instanceof \LINE\LINEBot\Event\MessageEvent\ImageMessage){
       $response = $bot->getMessageContent($event->getMessageId());
@@ -66,7 +66,7 @@ foreach ($events as $event) {
       if($health2 < 50)$resind = 1;
       $bot->replyMessage($event->getReplyToken(),
           (new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder())
-            ->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('saved at ' ."http://" . $_SERVER["HTTP_HOST"] . "/" . $directory_path . '/' . $filename . ".jpg" . "\n" . "この食べ物の健康度は・・・"."\n".$health2 ." / 100 !\n".$result[$resind]))
+            ->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(/*'saved at ' ."http://" . $_SERVER["HTTP_HOST"] . "/" . $directory_path . '/' . $filename . ".jpg" . */"\n" . "この食べ物の健康度は・・・"."\n".$health2 ." / 100 !\n".$result[$resind]))
             ->add(new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(1, 4))
             );
 
