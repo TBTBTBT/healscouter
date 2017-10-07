@@ -72,7 +72,7 @@ if($health2 < 85)$resind = 1;
       if($health2 < 35)$resind = 3;
       $bot->replyMessage($event->getReplyToken(),
           (new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder())
-            ->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(/*'saved at ' ."http://" . $_SERVER["HTTP_HOST"] . "/" . $directory_path . '/' . $filename . ".jpg" . */
+            ->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(
               "この食べ物の健康度は・・・"."\n".$health2 ." / 100 !\n".$result[$resind]."\n今日のコード生産性は…".$health2 * 100."行！".$result2[$resind]))
             //->add(new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(1, 4))
             );
