@@ -47,7 +47,7 @@ foreach ($events as $event) {
       } else {
         $resultString = "upload failed";
       }
-      $rgb =  imageLoder("./tmp/test.jpg");
+      $rgb =  imageLoder($directory_path . '/' . $filename . ".jpg");
 $r = ($rgb >> 16) & 0xFF;
 $g = ($rgb >> 8) & 0xFF;
 $b = $rgb & 0xFF;
