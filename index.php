@@ -47,15 +47,23 @@ foreach ($events as $event) {
       } else {
         $resultString = "upload failed";
       }
-      $rgb =  imageLoder($directory_path . '/' . $filename . ".jpg");
-$r = ($rgb >> 16) & 0xFF;
-$g = ($rgb >> 8) & 0xFF;
-$b = $rgb & 0xFF;
+      $rgywb =  imageLoder($directory_path . '/' . $filename . ".jpg");
+      $sum = 0;
+      foreach ($rgywb as $k) {
+        $sum += $k;
+        # code...
+      }
+      $sum = floor($sum / 5);
+      
+      $health = 0;
+      foreach ($rgywb as $k) {
+        $health += abs($k - $sum);
+        # code...
+      }
 
-      $pix =  $r.",".$g.",".$b;
       $bot->replyMessage($event->getReplyToken(),
           (new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder())
-            ->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('saved at ' ."http://" . $_SERVER["HTTP_HOST"] . "/" . $directory_path . '/' . $filename . ".jpg" . "\n" . $pix))
+            ->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('saved at ' ."http://" . $_SERVER["HTTP_HOST"] . "/" . $directory_path . '/' . $filename . ".jpg" . "\n" . "この食べ物の不健康度は・・・"."\n".$health."!\n"))
             ->add(new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(1, 4))
             );
 
