@@ -43,13 +43,13 @@ foreach ($events as $event) {
       }
       imagejpeg($im, $directory_path. "/" . $directory_path . '/' . $filename . ".jpg", 75);
       } else {
-      $resultString = "upload failed";
-
+        $resultString = "upload failed";
+      }
       $bot->replyMessage($event->getReplyToken(),
           (new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder())
             ->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder('saved at ' ."http://" . $_SERVER["HTTP_HOST"] . "/" . $directory_path . '/' . $filename . ".jpg"))
             ->add(new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(1, 4))
-      }
+      
     }
     continue;
   }
