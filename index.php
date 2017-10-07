@@ -41,7 +41,7 @@ foreach ($events as $event) {
             chmod($directory_path, 0777);
         }
       }
-      imagejpeg($im, $directory_path. "/" . $directory_path . '/' . $filename . ".jpg", 75);
+      imagejpeg($im, $directory_path . '/' . $filename . ".jpg", 75);
       } else {
         $resultString = "upload failed";
       }
