@@ -3,7 +3,7 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 require('image.php');
-$result = ["不健康です！","健康です！"];
+$result = ["健康です！","まあまあ健康です！","不健康です！"];
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv('CHANNEL_ACCESS_TOKEN'));
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => getenv('CHANNEL_SECRET')]);
 $signature = $_SERVER["HTTP_" . \LINE\LINEBot\Constant\HTTPHeader::LINE_SIGNATURE];
@@ -60,10 +60,11 @@ foreach ($events as $event) {
         $health += abs($k - $sum);
         # code...
       }
-      $health2 = ((408 - $health) * 100 / 408);
-      
+
+      $health2 = floor((408 - $health) * 100 / 408);
       $resind = 0;
-      if($health2 < 50)$resind = 1;
+      if($health2 < 60)$resind = 1;
+      if($health2 < 35)$resind = 1;
       $bot->replyMessage($event->getReplyToken(),
           (new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder())
             ->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(/*'saved at ' ."http://" . $_SERVER["HTTP_HOST"] . "/" . $directory_path . '/' . $filename . ".jpg" . */"\n" . "この食べ物の健康度は・・・"."\n".$health2 ." / 100 !\n".$result[$resind]))
