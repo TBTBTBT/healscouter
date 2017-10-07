@@ -3,7 +3,7 @@
 require_once __DIR__ . '/vendor/autoload.php';
 
 require('image.php');
-$result = ["超健康です！これはもしかしてCOMPですか？","健康です！","まあまあ健康です！","不健康です…！"];
+$result = ["超健康です！\nこれはもしかしてCOMPですか？","健康です！","まあまあ健康です！","不健康です…！"];
 $result2 = ["なんでもできますね！","今日も元気に頑張りましょう！","栄養には気をつけましょう","栄養が足りていませんね…COMPを食べてはどうですか？"];
 $httpClient = new \LINE\LINEBot\HTTPClient\CurlHTTPClient(getenv('CHANNEL_ACCESS_TOKEN'));
 $bot = new \LINE\LINEBot($httpClient, ['channelSecret' => getenv('CHANNEL_SECRET')]);
@@ -73,7 +73,7 @@ if($health2 < 85)$resind = 1;
       $bot->replyMessage($event->getReplyToken(),
           (new \LINE\LINEBot\MessageBuilder\MultiMessageBuilder())
             ->add(new \LINE\LINEBot\MessageBuilder\TextMessageBuilder(
-              "この食べ物の健康度は・・・"."\n".$health2 ." / 100 !\n".$result[$resind]."\n\n今日のコード生産性は…".($health2 * 90)."行！\n\n".$result2[$resind]))
+              "この食べ物の健康度は・・・"."\n\n".$health2 ." / 100 !\n\n".$result[$resind]."\n\n今日のコード生産性は…".($health2 * 90)."行！\n".$result2[$resind]))
             //->add(new \LINE\LINEBot\MessageBuilder\StickerMessageBuilder(1, 4))
             );
 
